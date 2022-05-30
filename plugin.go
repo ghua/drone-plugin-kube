@@ -160,5 +160,5 @@ func (p Plugin) handleYamlConfig(templateYaml string, clientset *kubernetes.Clie
 		return errors.New("⛔️ This plugin doesn't support that resource type")
 	}
 
-	return nil
+	return err
 }
