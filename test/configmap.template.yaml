@@ -2,3 +2,9 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: {{name}}
+data:
+  some-config.conf: |
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D

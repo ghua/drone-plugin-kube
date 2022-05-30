@@ -5,8 +5,11 @@ metadata:
   name: update-deployments
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["pods", "configmaps", "services"]
   verbs: ["get", "list", "watch", "create", "update", "patch"]
 - apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["batch"]
+  resources: [ "cronjobs" ]
+  verbs: [ "get", "list", "watch", "create", "update", "patch" ]

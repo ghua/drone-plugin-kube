@@ -8,8 +8,7 @@ import (
 
 func main() {
 	plugin := Plugin{
-		Template:      os.Getenv("PLUGIN_TEMPLATE"),
-		ConfigMapFile: os.Getenv("PLUGIN_CONFIGMAP_FILE"),
+		Template: os.Getenv("PLUGIN_TEMPLATE"),
 		KubeConfig: KubeConfig{
 			Token:                 os.Getenv("PLUGIN_TOKEN"),
 			Server:                os.Getenv("PLUGIN_SERVER"),

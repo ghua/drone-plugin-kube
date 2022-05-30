@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export PLUGIN_TEMPLATE=test/configmap.template.yaml
+export PLUGIN_TEMPLATE=test/cronjob.template.yaml
 export PLUGIN_NAME=drone-kube-test
-export PLUGIN_COMMIT=a5b81d0f
 export PLUGIN_NAMESPACE=default
 
 go build -o build/kubano

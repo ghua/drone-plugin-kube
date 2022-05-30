@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{name}}
+spec:
+  selector:
+    matchLabels:
+      app: {{name}}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{name}}
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{name}}
+data:
+  some-config.conf: |
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D
+    A BUNCH OF TRASH =D
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki-http
+  namespace: default
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: wiki
+  type: ClusterIP
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{name}}
+spec:
+  schedule: "0/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: job
+              image: bash
+              args: [ "date" ]
+          restartPolicy: Never
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
